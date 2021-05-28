@@ -6,69 +6,61 @@ from django.db import models
 class Basket(models.Model):
     ORDER_ID = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     PRODUCT_ID = models.CharField(max_length=200)
-    QANTITY = models.FloatField
+    QUANTITY = models.FloatField
     PRICE = models.FloatField
     DETAIL_PAGE_URL = models.CharField(max_length=200)
 
-# class Orders(models.Model):
- #    "ID": 12076390,
- #    "PERSON_TYPE_ID": 1,
- #    "DATE_INSERT": "2021-03-11 22:06:59",
- #    "STATUS_ID": "F",
- #    "LID": "s1",
- #    "USER_ID": 44
- #  },
+
+class Orders(models.Model):
+    ID = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    PERSON_TYPE_ID = models.IntegerField
+    DATE_INSERT = models.DateTimeField
+    STATUS_ID = models.CharField(max_length=1)
+    LID = models.CharField(max_length=200)
+    USER_ID = models.IntegerField
 
 
- # Products
- # # {
- # #     "ID": 461363,
- # #     "NAME": "Виагра, таблетки 100 мг, 2 шт."
- # # },
- #
+class Products(models.Model):
+    ID = models.IntegerField(primary_key=True)
+    NAME = models.CharField(max_length=200)
 
- # Property ???
- # # {
- # #     "ID": 276,
- # #     "CODE": "ALSO_BUY",
- # #     "NAME": "С этим товаром также покупают"
- # # },
- #
 
- # propertyMultipleValues.json
- # # {
- # #     "IBLOCK_ELEMENT_ID": 461363,
- # #     "IBLOCK_PROPERTY_ID": "356",
- # #     "VALUE": "6817",
- # #     "VALUE_ENUM": null,
- # #     "VALUE_NUM": 6817.0000,
- # #     "DESCRIPTION": null
- # # },
- #
+class Property(models.Model):
+    ID = models.IntegerField(primary_key=True)
+    CODE = models.CharField(max_length=200)
+    NAME = models.CharField(max_length=200)
 
- # propertyValues.json
- # # {
- # #     "IBLOCK_ELEMENT_ID": 461363,
- # #     "PROPERTY_276": "a:3:{s:5:\"VALUE\";a:0:{}s:11:\"DESCRIPTION\";a:0:{}s:2:\"ID\";a:0:{}}",
- # #     "PROPERTY_429": "a:3:{s:5:\"VALUE\";a:0:{}s:11:\"DESCRIPTION\";a:0:{}s:2:\"ID\";a:0:{}}",
- # #     "PROPERTY_326": "23a5c4b5-6f26-4053-b728-cb864a4edcbd",
- # #     "PROPERTY_574": "66",
- # #     "PROPERTY_265": "США",
- # #     "PROPERTY_284": null,
- # #     "PROPERTY_541": "100 мг",
- # #     "PROPERTY_542": "таблетки",
- # #     "PROPERTY_343": "100177",
- # #     "PROPERTY_428": "tabletki",
- # #     "PROPERTY_274": "таблетки 100 мг, 2 шт.",
- # #     "PROPERTY_263": 1.0000,
- # #     "PROPERTY_264": "Пфайзер",
- # #     "PROPERTY_594": "",
- # #     "PROPERTY_344": "a219a283-5674-498e-a828-d11bd7d7c4fc",
- # #     "PROPERTY_483": 0.0000,
- # #     "PROPERTY_536": "drug",
- # #     "PROPERTY_540": "2",
- # #     "PROPERTY_356": "a:3:{s:5:\"VALUE\";a:2:{i:0;s:4:\"6817\";i:1;s:4:\"9528\";}s:11:\"DESCRIPTION\";a:2:{i:0;N;i:1;N;}s:2:\"ID\";a:2:{i:0;s:7:\"6557061\";i:1;s:7:\"6557062\";}}",
- # #     "PROPERTY_567": "a:3:{s:5:\"VALUE\";a:0:{}s:11:\"DESCRIPTION\";a:0:{}s:2:\"ID\";a:0:{}}",
- # #     "PROPERTY_332": "RX",
- # #     "PROPERTY_283": ""
- # # },
+
+class PropertyMultipleValues(models.Model):
+    IBLOCK_ELEMENT_ID = models.IntegerField(primary_key=True)
+    IBLOCK_PROPERTY_ID = models.IntegerField(primary_key=True)
+    VALUE = models.IntegerField(primary_key=True)
+    VALUE_ENUM = models.CharField(max_length=200)  # ?????
+    VALUE_NUM = models.FloatField
+    DESCRIPTION = models.CharField(max_length=200)
+
+
+class PropertyValues(models.Model):
+    IBLOCK_ELEMENT_ID = models.IntegerField(primary_key=True)
+    PROPERTY_276 = models.CharField(max_length=200)
+    PROPERTY_429 = models.CharField(max_length=200)
+    PROPERTY_326 = models.CharField(max_length=200)
+    PROPERTY_574 = models.CharField(max_length=200)
+    PROPERTY_265 = models.CharField(max_length=200)
+    PROPERTY_284 = models.CharField(max_length=200)
+    PROPERTY_541 = models.CharField(max_length=200)
+    PROPERTY_542 = models.CharField(max_length=200)
+    PROPERTY_343 = models.CharField(max_length=200)
+    PROPERTY_428 = models.CharField(max_length=200)
+    PROPERTY_274 = models.CharField(max_length=200)
+    PROPERTY_263 = models.CharField(max_length=200)
+    PROPERTY_264 = models.CharField(max_length=200)
+    PROPERTY_594 = models.CharField(max_length=200)
+    PROPERTY_344 = models.CharField(max_length=200)
+    PROPERTY_483 = models.CharField(max_length=200)
+    PROPERTY_536 = models.CharField(max_length=200)
+    PROPERTY_540 = models.CharField(max_length=200)
+    PROPERTY_356 = models.CharField(max_length=200)
+    PROPERTY_567 = models.CharField(max_length=200)
+    PROPERTY_332 = models.CharField(max_length=200)
+    PROPERTY_283 = models.CharField(max_length=200)
